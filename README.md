@@ -1,1 +1,1 @@
-# Sistema-gesti-n-ingresos-y-egresos
+# Sistema-gestion-ingresos-y-egresos

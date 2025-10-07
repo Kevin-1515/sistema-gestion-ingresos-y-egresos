@@ -1,0 +1,14 @@
+.sidebar {
+  width: 200px;
+  height: 100vh;  /* Esto es importante para que ocupe toda la altura */
+  background-color: #333;
+  display: flex;  /* Hacemos que sea un contenedor flex */
+  flex-direction: column;  /* Alineamos los elementos de forma vertical */
+  align-items: center;  /* Centra los elementos horizontalmente */
+  justify-content: space-between;  /* Espacio entre los elementos, esto debería ser lo que buscas */
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}

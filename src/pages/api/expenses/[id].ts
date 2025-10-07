@@ -5,30 +5,33 @@ import { auth } from "@/lib/auth";
 export async function GET(req: Request, { params }: { params: { id: string } }) {
   try {
     const session = await auth.api.getSession({ headers: req.headers });
-    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!session)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    const income = await prisma.income.findFirst({
+    const expense = await prisma.expense.findFirst({
       where: { id: params.id, userId: session.user.id },
     });
 
-    if (!income) return NextResponse.json({ error: "Income not found" }, { status: 404 });
+    if (!expense)
+      return NextResponse.json({ error: "Expense not found" }, { status: 404 });
 
-    return NextResponse.json(income);
+    return NextResponse.json(expense);
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Error fetching income" }, { status: 500 });
+    return NextResponse.json({ error: "Error fetching expense" }, { status: 500 });
   }
 }
 
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   try {
     const session = await auth.api.getSession({ headers: req.headers });
-    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!session)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const body = await req.json();
     const { description, amount, date } = body;
 
-    const updatedIncome = await prisma.income.update({
+    const updatedExpense = await prisma.expense.update({
       where: { id: params.id },
       data: {
         description,
@@ -37,25 +40,26 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
       },
     });
 
-    return NextResponse.json(updatedIncome);
+    return NextResponse.json(updatedExpense);
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Error updating income" }, { status: 500 });
+    return NextResponse.json({ error: "Error updating expense" }, { status: 500 });
   }
 }
 
 export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   try {
     const session = await auth.api.getSession({ headers: req.headers });
-    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!session)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    const deletedIncome = await prisma.income.delete({
+    const deletedExpense = await prisma.expense.delete({
       where: { id: params.id },
     });
 
-    return NextResponse.json(deletedIncome);
+    return NextResponse.json(deletedExpense);
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Error deleting income" }, { status: 500 });
+    return NextResponse.json({ error: "Error deleting expense" }, { status: 500 });
   }
 }

@@ -5,7 +5,6 @@ import Sidebar from "@/components/layout/Sidebar";
 export default function AuthButton() {
   return (
     <div className="flex gap-4 justify-center">
-      <Sidebar></Sidebar>
       <button
         onClick={() => authClient.signIn.social({ provider: "github" })}
         className="px-4 py-2 bg-black text-white rounded-lg"

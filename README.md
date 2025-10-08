@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Sistema de Gestión de Ingresos y Egresos
 
-## Getting Started
+Aplicación web para administrar ingresos y egresos de usuarios, con autenticación, gestión de usuarios y reportes.
 
-First, run the development server:
+Tecnologías
 
-```bash
+Frontend: Next.js 15 (App Router), React 18, Tailwind CSS, Shadcn UI
+
+Backend: API Routes de Next.js, Prisma con PostgreSQL (Supabase)
+
+Autenticación: Better Auth con OAuth (GitHub)
+
+Base de datos: PostgreSQL (Supabase)
+
+Control de versiones: Git
+
+Instalación
+
+Clonar el repositorio:
+
+git clone https://github.com/Kevin-1515/sistema-gestion-ingresos-y-egresos.git
+
+
+Instalar dependencias:
+
+npm install
+
+
+Configurar variables de entorno: el archivo de variables de entorno se quitó del git ignore por lo que está disponible en el repo
+
+
+
+
+Ejecutar migraciones de Prisma:
+
+npx prisma migrate dev
+
+
+Ejecutar la aplicación:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+La app estará disponible en http://localhost:3000.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Estructura del proyecto
+/app
+  /dashboard
+    page.tsx
+    layout.tsx
+  page.tsx
+/lib
+  auth/
+    index.ts
+    client.ts
+  prisma.ts
+/components
+  ui/
+    table.tsx
+    button.tsx
 
-## Learn More
+Uso
 
-To learn more about Next.js, take a look at the following resources:
+/ → Página principal
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+/dashboard → Panel de gestión
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+/dashboard/users → Tabla de usuarios
 
-## Deploy on Vercel
+Autenticación mediante GitHub (Better Auth)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+Las tablas y componentes UI están basados en Shadcn, usando Tailwind CSS para el estilo.
+
+
+Los endpoints han sido probados por medio de cliente http, a la espera de unas últimas vistas en el frontend y pruebas unitarias
+
